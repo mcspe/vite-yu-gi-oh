@@ -15,6 +15,23 @@
       return{
         store
       }
+    },
+    methods:{
+      getApi(){
+        axios.get(store.apiUrl, {
+          params:{
+            num: store.cardNumber,
+            offset: store.cardOffset
+          }
+        })
+        .then(result => {
+          store.resultArray = result.data.data;
+        })
+      }
+    },
+    mounted(){
+      this.getApi();
+      console.log(store.resultArray);
     }
   }
 </script>
